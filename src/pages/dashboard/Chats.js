@@ -1,9 +1,81 @@
+import{Box ,
+      IconButton,
+      Stack,
+      Typography,
+      InputBase,
+      Badge,
+      Button,
+      Divider,
+      Avatar } from '@mui/material'
 import React from 'react'
-import{Box ,IconButton,Stack,Typography,InputBase } from '@mui/material'
-import { CircleDashed,MagnifyingGlass} from 'phosphor-react'
+import { CircleDashed,MagnifyingGlass,ArchiveBox } from 'phosphor-react'
 import { styled, alpha } from '@mui/material/styles';
+import { faker } from '@faker-js/faker';
 
 
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    backgroundColor: '#44b700',
+    color: '#44b700',
+    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+    '&::after': {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      borderRadius: '50%',
+      animation: 'ripple 1.2s infinite ease-in-out',
+      border: '1px solid currentColor',
+      content: '""',
+    },
+  },
+  '@keyframes ripple': {
+    '0%': {
+      transform: 'scale(.8)',
+      opacity: 1,
+    },
+    '100%': {
+      transform: 'scale(2.4)',
+      opacity: 0,
+    },
+  },
+}));
+
+
+
+
+
+
+
+const ChatElement = () =>
+{
+  return(
+    <Box sx={{
+      width:"100%",
+      height:60,
+      borderRadius:1,
+      backgroundColor:"white"
+      }}
+      p={2} 
+      >
+        <Stack direction='row' alignItems={"center"} justifyContent="space-between" spacing={2}>
+        <StyledBadge 
+        overlap="circular"
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        variant="dot"
+        >
+          <Avatar src={faker.image.avatar()}/>
+          </StyledBadge>
+          </Stack>
+
+       
+
+         
+      </Box>
+  )
+  
+}
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -32,7 +104,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'black',
+  color: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
@@ -72,7 +144,7 @@ function Chats() {
          justifyContent="space-between">
       <Typography 
       variant="h5" 
-      color="black">
+      >
       Chats
       </Typography>
       
@@ -88,7 +160,20 @@ function Chats() {
        <StyledInputBase placeholder="Search ... "/>
              </Search>
        </Stack>
-      
+       <Stack spacing={1}>
+      <Stack direction='row' alignItems={"center"} spacing={1.5}>
+         
+      <ArchiveBox size={24} />
+      <Button>Archived</Button>
+        
+        </Stack>
+          <Divider/>
+       </Stack>
+
+        <Stack direction="column">
+          <ChatElement/>
+          </Stack>
+
     </Stack>
     
     
