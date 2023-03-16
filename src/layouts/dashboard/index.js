@@ -100,6 +100,7 @@ const DashboardLayout = () => {
           <Stack  
             sx={{width:'max-content'}} 
             direction="column" 
+            alignItems={"center"}
             spacing={3} 
           >
             {Nav_Buttons.map((item) =>( 
@@ -141,7 +142,6 @@ const DashboardLayout = () => {
           defaultChecked />
           <Avatar src={faker.image.avatar()} />
           </Stack>
-          
         </Stack>    
       </Box>
       <Outlet />

@@ -11,7 +11,7 @@ import BoxMask from './BoxMask';
 
 const BoxStyle = styled(CardActionArea)(({ theme }) => ({
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
   padding: theme.spacing(1.5),
   color: theme.palette.text.disabled,
   border: `solid 1px ${theme.palette.grey[500_12]}`,

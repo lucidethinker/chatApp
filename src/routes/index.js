@@ -10,9 +10,15 @@ import LoadingScreen from "../components/LoadingScreen";
 
 const Loadable = (Component) => (props) => {
   return (
+    
     <Suspense fallback={<LoadingScreen />}>
+   
+    
       <Component {...props} />
+      
+    
     </Suspense>
+    
   );
 };
 
@@ -34,6 +40,8 @@ export default function Router() {
 }
 
 const GeneralApp = Loadable(
+  
   lazy(() => import("../pages/dashboard/GeneralApp")),
+  
 );
 const Page404 = Loadable(lazy(() => import("../pages/Page404")));
