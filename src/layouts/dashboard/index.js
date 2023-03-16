@@ -24,12 +24,14 @@ const DashboardLayout = () => {
         }}
       >
         <Stack 
-          direction="column" 
-          alignItems="center" 
-          sx={{width:"100%"}} 
-          spacing={3}
+        py={3}
+        alignItems={"center"}
+        justifyContent="space-between"
+        sx={{ height: "100%" }}
         >
-          <Box 
+        <Stack alignItems={"center"} spacing={4}>
+        
+        <Box 
             sx={{
               height: 64,
               width: 64,
@@ -43,7 +45,7 @@ const DashboardLayout = () => {
             />
           </Box>
           <Stack  
-            sc={{width:'max-content'}} 
+            sx={{width:'max-content'}} 
             direction="column" 
             spacing={3} 
           >
@@ -76,7 +78,12 @@ const DashboardLayout = () => {
               <Gear />
             </IconButton>
           </Stack>
+        </Stack>
+          
+          <Stack>
           <Avatar src={faker.image.avatar()} />
+          </Stack>
+          
         </Stack>    
       </Box>
       <Outlet />
