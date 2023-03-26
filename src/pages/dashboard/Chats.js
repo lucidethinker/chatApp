@@ -14,6 +14,8 @@ import { CircleDashed, MagnifyingGlass, ArchiveBox } from "phosphor-react";
 import { styled, alpha } from "@mui/material/styles";
 import { faker } from "@faker-js/faker";
 import { ChatList } from "../../data";
+import { SimpleBarStyle } from "../../components/Scrollbar";
+import { useTheme } from "@emotion/react";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -44,13 +46,14 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-const ChatElement = () => {
+const ChatElement = ({id,name,img,msg,time,unread,online}) => {
+  const theme =useTheme()
   return (
     <Box
       sx={{
         width: "100%",
         borderRadius: 1,
-        backgroundColor: "white",
+        backgroundColor: theme.palette.mode === "light"?"#FFF":theme.palette.background.default,
       }}
       p={2}
     >
@@ -61,16 +64,18 @@ const ChatElement = () => {
         spacing={2}
       >
         <Stack direction="row" spacing={2}>
-        <StyledBadge
-          overlap="circular"
-          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-          variant="dot"
-        >
-          <Avatar src={faker.image.avatar()} />
-        </StyledBadge>
+          {
+            online ?  <StyledBadge
+            overlap="circular"
+            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+            variant="dot"
+          >
+          </StyledBadge>: <Avatar src={faker.image.avatar()} />
+          }
+      
         <Stack spacing={0.3}>
-             <Typography variant="subtitle2" >John Doe</Typography>
-             <Typography variant="caption">John Doe</Typography>
+             <Typography variant="subtitle2" >{name}</Typography>
+             <Typography variant="caption">{msg}</Typography>
           </Stack>
 
         </Stack>
@@ -82,7 +87,7 @@ const ChatElement = () => {
             fontWeight: 600, 
           }
         } variant="caption" >9:30</Typography>
-       <Badge color="primary" badgeContent={2} />
+       <Badge color="primary" badgeContent={unread} />
       </Stack>
     </Box>
   );
@@ -91,7 +96,7 @@ const ChatElement = () => {
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  backgroundColor: alpha(theme.palette.background.default, 1),
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
@@ -131,17 +136,19 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 function Chats() {
+  const theme = useTheme();
   return (
     <Box
       sx={{
         position: "relative",
-        height: "100vh",
         width: 320,
-        backgroundColor: "#F8FAFF",
+        backgroundColor: theme.palette.mode === "light"?"#F8FAFF":theme.palette.background.paper,
         boxShadow: "0px 0px 2px rgba(0,0,0.25)",
       }}
     >
-      <Stack p={3} spacing={2}>
+      <Stack p={3} spacing={2} sx={{
+        height: "100%",
+      }}>
         <Stack
           direction="row"
           alignItems="center"
@@ -169,15 +176,34 @@ function Chats() {
           <Divider />
         </Stack>
 
-        <Stack direction="column">
+        <Stack 
+        spacing={2}
+        direction="column" sx={{
+          flexGrow: 1,
+          overflow:"scroll",
+          height: "100%",
+
+        }}>
+          <SimpleBarStyle timeout={500}
+            clickOnTrack={false}/>
+          
           <Stack spacing={2.4}>
        <Typography variant="subtitle2" sx={{color:"#676767"}}>
         Pinned Chats
        </Typography>
        {ChatList.filter((el)=>el.pinned).map((el)=>{
-          return <ChatElement />
+          return <ChatElement {...el} />
        })}
           </Stack>
+          <Stack spacing={2.4}>
+       <Typography variant="subtitle2" sx={{color:"#676767"}}>
+        All Chats
+       </Typography>
+       {ChatList.filter((el)=>el.pinned).map((el)=>{
+          return <ChatElement {...el} />
+       })}
+          </Stack>
+         
          
         </Stack>
       </Stack>
