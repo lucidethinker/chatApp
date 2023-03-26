@@ -13,6 +13,7 @@ import React from "react";
 import { CircleDashed, MagnifyingGlass, ArchiveBox } from "phosphor-react";
 import { styled, alpha } from "@mui/material/styles";
 import { faker } from "@faker-js/faker";
+import { ChatList } from "../../data";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -48,7 +49,6 @@ const ChatElement = () => {
     <Box
       sx={{
         width: "100%",
-        height: 60,
         borderRadius: 1,
         backgroundColor: "white",
       }}
@@ -60,6 +60,7 @@ const ChatElement = () => {
         justifyContent="space-between"
         spacing={2}
       >
+        <Stack direction="row" spacing={2}>
         <StyledBadge
           overlap="circular"
           anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
@@ -67,6 +68,21 @@ const ChatElement = () => {
         >
           <Avatar src={faker.image.avatar()} />
         </StyledBadge>
+        <Stack spacing={0.3}>
+             <Typography variant="subtitle2" >John Doe</Typography>
+             <Typography variant="caption">John Doe</Typography>
+          </Stack>
+
+        </Stack>
+        
+      </Stack>
+      <Stack spacing={2} alignItems="center">
+        <Typography sx={
+          {
+            fontWeight: 600, 
+          }
+        } variant="caption" >9:30</Typography>
+       <Badge color="primary" badgeContent={2} />
       </Stack>
     </Box>
   );
@@ -154,7 +170,15 @@ function Chats() {
         </Stack>
 
         <Stack direction="column">
-          <ChatElement />
+          <Stack spacing={2.4}>
+       <Typography variant="subtitle2" sx={{color:"#676767"}}>
+        Pinned Chats
+       </Typography>
+       {ChatList.filter((el)=>el.pinned).map((el)=>{
+          return <ChatElement />
+       })}
+          </Stack>
+         
         </Stack>
       </Stack>
     </Box>
