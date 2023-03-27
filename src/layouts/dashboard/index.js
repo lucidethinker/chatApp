@@ -62,7 +62,8 @@ const DashboardLayout = () => {
 
   const [selected, setSelected] = React.useState(0);
   return (
-    <>
+  
+    <Stack direction="row" >
       <Box
         p={3}
         sx={{
@@ -138,7 +139,7 @@ const DashboardLayout = () => {
         </Stack>
       </Box>
       <Outlet />
-    </>
+    </Stack>
   );
 };
 
