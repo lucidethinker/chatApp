@@ -46,14 +46,14 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-const ChatElement = ({id,name,img,msg,time,unread,online}) => {
-  const theme =useTheme()
+const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
+  const theme = useTheme()
   return (
     <Box
       sx={{
         width: "100%",
         borderRadius: 1,
-        backgroundColor: theme.palette.mode === "light"?"#FFF":theme.palette.background.default,
+        backgroundColor: theme.palette.mode === "light" ? "#FFF" : theme.palette.background.default,
       }}
       p={2}
     >
@@ -65,29 +65,29 @@ const ChatElement = ({id,name,img,msg,time,unread,online}) => {
       >
         <Stack direction="row" spacing={2}>
           {
-            online ?  <StyledBadge
-            overlap="circular"
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-            variant="dot"
-          >
-          </StyledBadge>: <Avatar src={faker.image.avatar()} />
+            online ? <StyledBadge
+              overlap="circular"
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+              variant="dot"
+            >
+            </StyledBadge> : <Avatar src={faker.image.avatar()} />
           }
-      
-        <Stack spacing={0.3}>
-             <Typography variant="subtitle2" >{name}</Typography>
-             <Typography variant="caption">{msg}</Typography>
+
+          <Stack spacing={0.3}>
+            <Typography variant="subtitle2" >{name}</Typography>
+            <Typography variant="caption">{msg}</Typography>
           </Stack>
 
         </Stack>
-        
+
       </Stack>
       <Stack spacing={2} alignItems="center">
         <Typography sx={
           {
-            fontWeight: 600, 
+            fontWeight: 600,
           }
         } variant="caption" >9:30</Typography>
-       <Badge color="primary" badgeContent={unread} />
+        <Badge color="primary" badgeContent={unread} />
       </Stack>
     </Box>
   );
@@ -142,7 +142,7 @@ function Chats() {
       sx={{
         position: "relative",
         width: 320,
-        backgroundColor: theme.palette.mode === "light"?"#F8FAFF":theme.palette.background.paper,
+        backgroundColor: theme.palette.mode === "light" ? "#F8FAFF" : theme.palette.background.paper,
         boxShadow: "0px 0px 2px rgba(0,0,0.25)",
       }}
     >
@@ -176,35 +176,35 @@ function Chats() {
           <Divider />
         </Stack>
 
-        <Stack 
-        spacing={2}
-        direction="column" sx={{
-          flexGrow: 1,
-          overflow:"scroll",
-          height: "100%",
+        <Stack
+          spacing={2}
+          direction="column" sx={{
+            flexGrow: 1,
+            overflow: "scroll",
+            height: "100%",
 
-        }}>
+          }}>
           <SimpleBarStyle timeout={500}
-            clickOnTrack={false}/>
-          
+            clickOnTrack={false} />
+
           <Stack spacing={2.4}>
-       <Typography variant="subtitle2" sx={{color:"#676767"}}>
-        Pinned Chats
-       </Typography>
-       {ChatList.filter((el)=>el.pinned).map((el)=>{
-          return <ChatElement {...el} />
-       })}
+            <Typography variant="subtitle2" sx={{ color: "#676767" }}>
+              Pinned Chats
+            </Typography>
+            {ChatList.filter((el) => el.pinned).map((el) => {
+              return <ChatElement {...el} />
+            })}
           </Stack>
           <Stack spacing={2.4}>
-       <Typography variant="subtitle2" sx={{color:"#676767"}}>
-        All Chats
-       </Typography>
-       {ChatList.filter((el)=>el.pinned).map((el)=>{
-          return <ChatElement {...el} />
-       })}
+            <Typography variant="subtitle2" sx={{ color: "#676767" }}>
+              All Chats
+            </Typography>
+            {ChatList.filter((el) => el.pinned).map((el) => {
+              return <ChatElement {...el} />
+            })}
           </Stack>
-         
-         
+
+
         </Stack>
       </Stack>
     </Box>
