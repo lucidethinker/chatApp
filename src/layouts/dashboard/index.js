@@ -11,6 +11,7 @@ import { Gear } from "phosphor-react";
 import { faker } from "@faker-js/faker";
 
 import useSettings from "../../hooks/useSettings";
+import { Directions } from "@mui/icons-material";
 
 const AntSwitch = styled(Switch)(({ theme }) => ({
   width: 40,
@@ -63,6 +64,8 @@ const DashboardLayout = () => {
   const [selected, setSelected] = React.useState(0);
   return (
     <>
+    <Stack direction="row">
+    </Stack>
       <Box
         p={3}
         sx={{
@@ -138,6 +141,7 @@ const DashboardLayout = () => {
         </Stack>
       </Box>
       <Outlet />
+      </Stack>
     </>
   );
 };
