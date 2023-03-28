@@ -197,7 +197,7 @@ function Chats() {
           direction="column"
           sx={{
             flexGrow: 1,
-            overflow: "scroll",
+            overflowY: "scroll",
             height: "100%",
           }}
         >
