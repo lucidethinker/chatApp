@@ -1,35 +1,149 @@
-import { Stack,Box } from '@mui/material'
-import React from 'react'
+import { faker } from "@faker-js/faker";
+import { Stack, Box, Avatar, Badge,Typography, Divider, TextField,InputAdornment} from "@mui/material";
+import IconButton from '@mui/material/IconButton';
+import React from "react";
+import { styled } from "@mui/material/styles";
+import {Phone,VideoCamera,MagnifyingGlass, CaretDown, LinkSimple} from "phosphor-react"
+
+
+
+const StyledInput = styled(TextField)(({ theme }) => ({
+    "&.MuiInputBase-input":{
+        paddingTop: "12px",
+        paddingBottom: "12px",
+
+    }
+
+}));
+
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    backgroundColor: "#44b700",
+    color: "#44b700",
+    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+    "&::after": {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      borderRadius: "50%",
+      animation: "ripple 1.2s infinite ease-in-out",
+      border: "1px solid currentColor",
+      content: '""',
+    },
+  },
+  "@keyframes ripple": {
+    "0%": {
+      transform: "scale(.8)",
+      opacity: 1,
+    },
+    "100%": {
+      transform: "scale(2.4)",
+      opacity: 0,
+    },
+  },
+}));
 
 function Conversation() {
   return (
     <Stack height={"100%"} maxHeight={"100vh"} width={"auto"}>
-    <Box sx={{
-        height:100,
-        width:"100%",
-        backgroundColor:"#F8FAFF",
-        boxShadow:"0px 0px 2px rgba(0,0,0.25)"
+      <Box
+      p={2}
+        sx={{
 
-    }}>
+          width: "100%",
+          backgroundColor: "#F8FAFF",
+          boxShadow: "0px 0px 2px rgba(0,0,0.25)",
+        }}
+      >
+        <Stack
+          alignItems={"center"}
+          direction="row"
+          justifyContent={"space-between"}
+          spacing={2}
+         
+        >
+          <Stack direction={"row"} spacing={2}>
+            <Box>
+              <StyledBadge
+              overlap="circular"
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+              variant="dot"
+              >
+                <Avatar alt={faker.name.fullName()} 
+                src={faker.image.avatar()} 
+                />
+              </StyledBadge>
+             
+            </Box>
+            <Stack spacing={0.2}>
+                <Typography variant="subtitle2">
+                  {faker.name.fullName()}
+                </Typography>
+                <Typography variant="caption">
+                  Online
+                </Typography>
+              </Stack>
+          </Stack>
+          <Stack direction={"row"} alignItems={"center"} spacing={3}>
+             <IconButton>
+                <VideoCamera />
+             </IconButton>
+             <IconButton>
+                <Phone />
+             </IconButton>
+             <IconButton>
+                <MagnifyingGlass />
+             </IconButton>
+             <Divider orientation="vertical" flexItem/>
+             <IconButton>
+                <CaretDown />
+             </IconButton>
+            </Stack>
+        </Stack>
+      </Box>
 
-    </Box>
-     
-     <Box width={"100%"} sx={{ 
-        flexGrow:1,
-     }}></Box>
+      <Box
+        width={"100%"}
+        sx={{
+          flexGrow: 1,
+        }}
+      ></Box>
 
+      <Box
+      p={2}
+        sx={{
+       
+          width: "100%",
+          backgroundColor: "#F8FAFF",
+          boxShadow: "0px 0px 2px rgba(0,0,0.25)",
+        }}
+      >
+        
+        <Stack direction="row" align={"center"} spacing={3}>
+       <StyledInput 
+       fullWidth  
+       placeholder="Write a message .." 
+       variant="filled" 
+       inputProps={{
+        disableUnderline: true,
+      }}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <LinkSimple />
+            </InputAdornment>
+          ),
+       }}/>
+       
 
+        </Stack>
 
-    <Box sx={{
-        height:100,
-        width:"100%",
-        backgroundColor:"#F8FAFF",
-        boxShadow:"0px 0px 2px rgba(0,0,0.25)"
-
-    }}>
-        </Box>
+      </Box>
     </Stack>
-  )
+  );
 }
 
-export default Conversation
+export default Conversation;

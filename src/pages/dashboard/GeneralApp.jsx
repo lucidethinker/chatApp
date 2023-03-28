@@ -9,12 +9,12 @@ const GeneralApp = () => {
     <>
     <Stack direction="row" sx={{width:"100%"}}>
       <Chats />
-      <Box sx={{height:"100%",width:"calc(100vw-420px)" ,background:"fff"}}>
+      <Box sx={{height:"100%",width:"calc(100vw - 420px)",background:"#fff"}}>
     
-
+      <Conversation/>
       </Box>
      
-         <Conversation/>
+         
 
       </Stack>
     </>

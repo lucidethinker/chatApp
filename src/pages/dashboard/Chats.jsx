@@ -51,20 +51,23 @@ const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
   return (
     <Box
       sx={{
+        position: "relative",
         width: "100%",
         borderRadius: 1,
         backgroundColor:
           theme.palette.mode === "light"
             ? "#FFF"
             : theme.palette.background.default,
+            
       }}
       p={2}
     >
+       
       <Stack
         direction="row"
-        alignItems={"center"}
         justifyContent="space-between"
         spacing={2}
+        position={"relative"}
       >
         <Stack direction="row" spacing={2}>
           {online ? (
@@ -147,6 +150,7 @@ function Chats() {
       sx={{
         position: "relative",
         width: 320,
+        height: "100vh",
         backgroundColor:
           theme.palette.mode === "light"
             ? "#F8FAFF"
