@@ -23,6 +23,7 @@ import {
 } from "phosphor-react";
 import Header from "./Header";
 import Footer from "./Footer";
+import Message from "./Message";
 
 
 
@@ -36,7 +37,10 @@ function Conversation() {
         sx={{
           flexGrow: 1,
         }}
-      ></Box>
+      >
+      <Message/>
+
+      </Box>
       <Footer/>
       
     </Stack>
