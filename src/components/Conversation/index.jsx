@@ -1,21 +1,33 @@
 import { faker } from "@faker-js/faker";
-import { Stack, Box, Avatar, Badge,Typography, Divider, TextField,InputAdornment} from "@mui/material";
-import IconButton from '@mui/material/IconButton';
+import {
+  Stack,
+  Box,
+  Avatar,
+  Badge,
+  Typography,
+  Divider,
+  TextField,
+  InputAdornment,
+} from "@mui/material";
+import IconButton from "@mui/material/IconButton";
 import React from "react";
-import { styled } from "@mui/material/styles";
-import {Phone,VideoCamera,MagnifyingGlass, CaretDown, LinkSimple} from "phosphor-react"
-
-
+import { styled, useTheme } from "@mui/material/styles";
+import {
+  Phone,
+  VideoCamera,
+  MagnifyingGlass,
+  CaretDown,
+  LinkSimple,
+  Smiley,
+  PaperPlane,
+} from "phosphor-react";
 
 const StyledInput = styled(TextField)(({ theme }) => ({
-    "&.MuiInputBase-input":{
-        paddingTop: "12px",
-        paddingBottom: "12px",
-
-    }
-
+  "&.MuiInputBase-input": {
+    paddingTop: "12px",
+    paddingBottom: "12px",
+  },
 }));
-
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -47,14 +59,16 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 function Conversation() {
+  const theme = useTheme();
   return (
     <Stack height={"100%"} maxHeight={"100vh"} width={"auto"}>
       <Box
-      p={2}
+        p={2}
         sx={{
-
           width: "100%",
-          backgroundColor: "#F8FAFF",
+          backgroundColor: theme.palette.mode === "light"
+          ? "#fff"
+          : theme.palette.background.default,
           boxShadow: "0px 0px 2px rgba(0,0,0.25)",
         }}
       >
@@ -63,45 +77,42 @@ function Conversation() {
           direction="row"
           justifyContent={"space-between"}
           spacing={2}
-         
         >
           <Stack direction={"row"} spacing={2}>
             <Box>
               <StyledBadge
-              overlap="circular"
-              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-              variant="dot"
+                overlap="circular"
+                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                variant="dot"
               >
-                <Avatar alt={faker.name.fullName()} 
-                src={faker.image.avatar()} 
+                <Avatar
+                  alt={faker.name.fullName()}
+                  src={faker.image.avatar()}
                 />
               </StyledBadge>
-             
             </Box>
             <Stack spacing={0.2}>
-                <Typography variant="subtitle2">
-                  {faker.name.fullName()}
-                </Typography>
-                <Typography variant="caption">
-                  Online
-                </Typography>
-              </Stack>
+              <Typography variant="subtitle2">
+                {faker.name.fullName()}
+              </Typography>
+              <Typography variant="caption">Online</Typography>
+            </Stack>
           </Stack>
           <Stack direction={"row"} alignItems={"center"} spacing={3}>
-             <IconButton>
-                <VideoCamera />
-             </IconButton>
-             <IconButton>
-                <Phone />
-             </IconButton>
-             <IconButton>
-                <MagnifyingGlass />
-             </IconButton>
-             <Divider orientation="vertical" flexItem/>
-             <IconButton>
-                <CaretDown />
-             </IconButton>
-            </Stack>
+            <IconButton>
+              <VideoCamera />
+            </IconButton>
+            <IconButton>
+              <Phone />
+            </IconButton>
+            <IconButton>
+              <MagnifyingGlass />
+            </IconButton>
+            <Divider orientation="vertical" flexItem />
+            <IconButton>
+              <CaretDown />
+            </IconButton>
+          </Stack>
         </Stack>
       </Box>
 
@@ -113,34 +124,57 @@ function Conversation() {
       ></Box>
 
       <Box
-      p={2}
+        p={2}
         sx={{
-       
           width: "100%",
-          backgroundColor: "#F8FAFF",
+          backgroundColor: theme.palette.mode === "light"
+          ? "#fff"
+          : theme.palette.background.default,
           boxShadow: "0px 0px 2px rgba(0,0,0.25)",
         }}
       >
-        
         <Stack direction="row" align={"center"} spacing={3}>
-       <StyledInput 
-       fullWidth  
-       placeholder="Write a message .." 
-       variant="filled" 
-       inputProps={{
-        disableUnderline: true,
-      }}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <LinkSimple />
-            </InputAdornment>
-          ),
-       }}/>
-       
-
+          <StyledInput
+            fullWidth
+            placeholder="Write a message .."
+            variant="filled"
+            InputProps={{
+              disableUnderline: true,
+              startAdornment: (
+                <InputAdornment>
+                  <IconButton>
+                    <LinkSimple />
+                  </IconButton>
+                </InputAdornment>
+              ),
+              endAdornment: (
+                <InputAdornment>
+                  <IconButton>
+                    <Smiley />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+          <Box
+            sx={{
+              height: 50,
+              width: 50,
+              backgroundColor: theme.palette.primary.main,
+              borderRadius: 1.5,
+            }}
+          >
+            <Stack
+              sx={{ height: "100%", width: "100%" }}
+              alignItems="center"
+              justifyContent="center"
+            >
+              <IconButton>
+                <PaperPlane color="white" />
+              </IconButton>
+            </Stack>
+          </Box>
         </Stack>
-
       </Box>
     </Stack>
   );
