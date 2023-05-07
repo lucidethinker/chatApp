@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect } from "react";
 import { Stack } from "@mui/material";
 import { Navigate, Outlet } from "react-router-dom";
@@ -119,6 +120,19 @@ const DashboardLayout = () => {
         <Outlet />
       </Stack>
     </>
+=======
+import React from "react";
+import { Stack } from "@mui/material";
+import { Outlet } from "react-router-dom";
+import SideBar from "./SideBar";
+
+const DashboardLayout = () => {
+  return (
+    <Stack direction="row">
+      <SideBar />
+      <Outlet />
+    </Stack>
+>>>>>>> b7b9df3172b22f892c855534b8aee8b4d8745da6
   );
 };
 
